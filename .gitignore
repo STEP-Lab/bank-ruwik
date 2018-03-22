@@ -1,0 +1,15 @@
+build/
+.idea/
+.settings/
+.vscode/
+gradle/
+.project
+application/build
+application/out
+application/.settings
+library/build
+library/out
+library/.settings
+*.iml
+bin/
+out/
