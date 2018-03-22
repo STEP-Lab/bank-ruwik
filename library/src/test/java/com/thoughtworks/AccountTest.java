@@ -1,16 +1,37 @@
 package com.thoughtworks;
 
 import com.thoughtworks.Account;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class AccountTest {
+    private Account acc;
+
+    @Before
+    public void setUp() throws Exception, MinimumBalanceException, AccNumPatternMismatchException {
+        acc = new Account("Manindra","1234-1234",1000);
+    }
+
     @Test
-    public void checkAccNumber() {
-        Account acc =  new Account("Manindra","1234-1234");
+    public void checkAccNumber() throws MinimumBalanceException {
         assertThat(acc.getAccNumber(),is("1234-1234"));
     }
 
+    @Test
+    public void checkName() {
+        assertThat(acc.getName(),is("Manindra"));
+    }
+
+    @Test (expected = MinimumBalanceException.class)
+    public void checkMinimum() throws MinimumBalanceException, AccNumPatternMismatchException {
+        new Account("Manindra","1234-1234",100);
+    }
+
+    @Test (expected = AccNumPatternMismatchException.class)
+    public void validateAccNumber() throws MinimumBalanceException, AccNumPatternMismatchException {
+        new Account("Fubiki","1234",1000);
+    }
 }
