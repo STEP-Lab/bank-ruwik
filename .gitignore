@@ -2,7 +2,9 @@ build/
 .idea/
 .settings/
 .vscode/
-gradle/
+.gradle/
+gradlew
+gradlew.bat
 .project
 application/build
 application/out
