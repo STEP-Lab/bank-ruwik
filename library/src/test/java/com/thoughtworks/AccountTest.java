@@ -34,4 +34,22 @@ public class AccountTest {
     public void validateAccNumber() throws MinimumBalanceException, AccNumPatternMismatchException {
         new Account("Fubiki","1234",1000);
     }
+
+    @Test
+    public void checkGetBalance() {
+        assertThat(acc.getBalance(),is(1000.0));
+    }
+
+    @Test
+    public void checkWithdraw() throws MinimumBalanceException, AccNumPatternMismatchException, InsufficientFundsException {
+        acc = new Account("Manindra","1234-1243",2000);
+        assertThat(acc.getBalance(),is(2000.0));
+        acc.withdraw(1000);
+        assertThat(acc.getBalance(),is(1000.0));
+    }
+
+    @Test (expected = InsufficientFundsException.class)
+    public void validatingInsufficientFund() throws InsufficientFundsException {
+        acc.withdraw(1000);
+    }
 }

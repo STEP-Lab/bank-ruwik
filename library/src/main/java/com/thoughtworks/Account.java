@@ -1,10 +1,13 @@
 package com.thoughtworks;
 
+import javax.naming.InsufficientResourcesException;
+
 public class Account {
 
     private final String name;
     private final String accNumber;
     private double balance;
+    private double minimumBalace = 1000;
 
     public Account(String name, String accNumber, double balance) throws MinimumBalanceException, AccNumPatternMismatchException {
         validateAccountNumber(accNumber);
@@ -32,5 +35,16 @@ public class Account {
 
     public String getName() {
         return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if(this.balance-amount<minimumBalace){
+            throw new InsufficientFundsException();
+        }
+        this.balance-=amount;
     }
 }
