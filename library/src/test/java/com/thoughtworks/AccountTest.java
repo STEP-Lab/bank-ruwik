@@ -52,4 +52,10 @@ public class AccountTest {
     public void validatingInsufficientFund() throws InsufficientFundsException {
         acc.withdraw(1000);
     }
+
+    @Test
+    public void checkCredit() {
+        acc.credit(1000);
+        assertThat(acc.getBalance(),is(2000.0));
+    }
 }

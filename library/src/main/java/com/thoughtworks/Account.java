@@ -47,4 +47,8 @@ public class Account {
         }
         this.balance-=amount;
     }
+
+    public void credit(double amount) {
+        this.balance+=amount;
+    }
 }
